@@ -38,7 +38,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Shooting"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""3ae8f03f-28b5-42f5-9ced-ca22d23b348c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
