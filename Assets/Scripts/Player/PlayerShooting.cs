@@ -3,6 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
+    //S.S
+    private bool tryingToShoot = false;
+
+
+
+
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
@@ -30,7 +36,8 @@ public class PlayerShooting : MonoBehaviour
 
     //S.S
     private void Start(){
-        PlayerMovement.playerControls.Player.Shooting.performed += OnPlayerShootPerformed;
+        PlayerMovement.playerControls.Player.Shooting.started += OnPlayerShootStarted;
+        PlayerMovement.playerControls.Player.Shooting.canceled += OnPlayerShootCanceled;;
     }
 
 
@@ -38,31 +45,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if(timer >= timeBetweenBullets * effectsDisplayTime){
-            DisableEffects ();
-        }
-    }
-
-
-    public void DisableEffects ()
-    {
-        gunLine.enabled = false;
-        gunLight.enabled = false;
-    }
-
-
-    void Shoot ()
-    {
-        
-    }
-
-
-
-
-    //S.S
-    //!!This might need to be in a different script
-	private void OnPlayerShootPerformed(InputAction.CallbackContext ctx){
-        if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0){
+        if(tryingToShoot == true && timer >= timeBetweenBullets && Time.timeScale != 0){
             timer = 0f;
 
             gunAudio.Play ();
@@ -94,14 +77,29 @@ public class PlayerShooting : MonoBehaviour
         }
 
 
+		if(timer >= timeBetweenBullets * effectsDisplayTime){
+            DisableEffects ();
+        }
+    }
+
+
+    public void DisableEffects ()
+    {
+        gunLine.enabled = false;
+        gunLight.enabled = false;
+    }
 
 
 
 
 
-
-		//Button read
-        
+    //S.S
+    //!!This might need to be in a different script
+	private void OnPlayerShootStarted(InputAction.CallbackContext ctx){
+        tryingToShoot = true;    
+	}//OnShootPerformed func close
+    private void OnPlayerShootCanceled(InputAction.CallbackContext ctx){
+        tryingToShoot = false;    
 	}//OnShootPerformed func close
 
 }
