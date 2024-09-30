@@ -4,8 +4,14 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerHealth : MonoBehaviour
-{
+public class PlayerHealth : MonoBehaviour{
+
+    //S.S
+    [SerializeField] private CharacterStats playerStats;
+
+
+
+
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
@@ -30,6 +36,9 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent <PlayerMovement> ();
         playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
+
+
+        playerStats.SetCurrentHealth(playerStats.GetMaxHealth());
     }
 
 
@@ -52,6 +61,8 @@ public class PlayerHealth : MonoBehaviour
         damaged = true;
 
         currentHealth -= amount;
+        playerStats.ReduceHealth(amount);
+        Debug.Log("Current Health: Scriptable: " + playerStats.GetCurrentHealth());
 
         healthSlider.value = currentHealth;
 
