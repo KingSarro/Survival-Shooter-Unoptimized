@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour{
 
 	//Shari was here!
-	private PlayerControls playerControls;
+	public static PlayerControls playerControls;
 
 	//hehehe (;
 
@@ -40,19 +40,15 @@ public class PlayerMovement : MonoBehaviour{
 		playerControls.Player.Movement.performed += OnPlayerMovementPerformed;
 	}
 
-	void FixedUpdate()
-	{
-		////float h = Input.GetAxisRaw("Horizontal");
-		////float v = Input.GetAxisRaw("Vertical");
+	void FixedUpdate(){
 
-		Move();
+		Move(); //Took out the h and v variables
 		Turning();
-		Animating(movement);
+		Animating(movement); //Switched from the h and v variables to the vector
 	}
 
-	void Move()
-	{
-		////movement.Set(h, 0f, v);
+	void Move(){
+		//got rid of the set movement because the movement is being read and set on perform
 		movement = movement.normalized * speed * Time.deltaTime;
 
 		playerRigidbody.MovePosition(transform.position + movement);
@@ -74,23 +70,23 @@ public class PlayerMovement : MonoBehaviour{
 
 	void Animating(Vector3 movement)
 	{
-		bool walking = (movement != Vector3.zero);
+		bool walking = (movement != Vector3.zero); //Changed to check if the movement is not zero
 
 		anim.SetBool("IsWalking", walking);
 	}
 
 	//S.S
+
+	//created to get the performed movement
 	private void OnPlayerMovementPerformed(InputAction.CallbackContext ctx){
 		movement = ctx.ReadValue<Vector3>();
 	}
+	//created to get the cancelled movement
 	private void OnPlayerMovementCancelled(InputAction.CallbackContext ctx){
 		movement = Vector3.zero;
 	}
 
-	//!!This might need to be in a different script
-	private void OnPlayerShootPerformed(InputAction.CallbackContext ctx){
-		//Button read
-	}
+	
 
 
 

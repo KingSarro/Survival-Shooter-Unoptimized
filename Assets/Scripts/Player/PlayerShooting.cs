@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -27,18 +28,17 @@ public class PlayerShooting : MonoBehaviour
         gunLight = GetComponent<Light> ();
     }
 
+    //S.S
+    private void Start(){
+        PlayerMovement.playerControls.Player.Shooting.performed += OnPlayerShootPerformed;
+    }
+
 
     void Update ()
     {
         timer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-        {
-            Shoot ();
-        }
-
-        if(timer >= timeBetweenBullets * effectsDisplayTime)
-        {
+		if(timer >= timeBetweenBullets * effectsDisplayTime){
             DisableEffects ();
         }
     }
@@ -53,33 +53,55 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot ()
     {
-        timer = 0f;
-
-        gunAudio.Play ();
-
-        gunLight.enabled = true;
-
-        gunParticles.Stop ();
-        gunParticles.Play ();
-
-        gunLine.enabled = true;
-        gunLine.SetPosition (0, transform.position);
-
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
-
-        if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
-        {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
-            if(enemyHealth != null)
-            {
-                enemyHealth.TakeDamage (damagePerShot, shootHit.point);
-            }
-            gunLine.SetPosition (1, shootHit.point);
-        }
-        else
-        {
-            gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
-        }
+        
     }
+
+
+
+
+    //S.S
+    //!!This might need to be in a different script
+	private void OnPlayerShootPerformed(InputAction.CallbackContext ctx){
+        if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0){
+            timer = 0f;
+
+            gunAudio.Play ();
+
+            gunLight.enabled = true;
+
+            gunParticles.Stop ();
+            gunParticles.Play ();
+
+            gunLine.enabled = true;
+            gunLine.SetPosition (0, transform.position);
+
+            shootRay.origin = transform.position;
+            shootRay.direction = transform.forward;
+
+            if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+            {
+                EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
+                if(enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+                }
+                gunLine.SetPosition (1, shootHit.point);
+            }
+            else
+            {
+                gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+            }
+        }
+
+
+
+
+
+
+
+
+		//Button read
+        
+	}//OnShootPerformed func close
+
 }
