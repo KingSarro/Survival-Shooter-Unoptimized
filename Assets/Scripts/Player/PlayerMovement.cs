@@ -1,7 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour{
+
+	//Shari was here!
+	private PlayerControls playerControls;
+
+	//hehehe (;
+
+
 	public float speed = 6f;
 
 	private Vector3 movement;
@@ -10,26 +18,41 @@ public class PlayerMovement : MonoBehaviour
 	private int floorMask;
 	private float camRayLength = 100f;
 
+	private void OnEnable(){
+		playerControls.Enable();
+	}
+	private void OnDisable(){
+		playerControls.Disable();
+	}
+
 	void Awake()
 	{
 		floorMask = LayerMask.GetMask("Floor");
 		anim = GetComponent<Animator>();
 		playerRigidbody = GetComponent<Rigidbody>();
+
+
+		//S.S
+		playerControls = new PlayerControls();
+	}
+
+	private void Start(){
+		playerControls.Player.Movement.performed += OnPlayerMovementPerformed;
 	}
 
 	void FixedUpdate()
 	{
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
+		////float h = Input.GetAxisRaw("Horizontal");
+		////float v = Input.GetAxisRaw("Vertical");
 
-		Move(h, v);
+		Move();
 		Turning();
-		Animating(h, v);
+		Animating(movement);
 	}
 
-	void Move(float h, float v)
+	void Move()
 	{
-		movement.Set(h, 0f, v);
+		////movement.Set(h, 0f, v);
 		movement = movement.normalized * speed * Time.deltaTime;
 
 		playerRigidbody.MovePosition(transform.position + movement);
@@ -49,10 +72,29 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	void Animating(float h, float v)
+	void Animating(Vector3 movement)
 	{
-		bool walking = h != 0f || v != 0f;
+		bool walking = (movement != Vector3.zero);
 
 		anim.SetBool("IsWalking", walking);
 	}
+
+	//S.S
+	private void OnPlayerMovementPerformed(InputAction.CallbackContext ctx){
+		movement = ctx.ReadValue<Vector3>();
+	}
+	private void OnPlayerMovementCancelled(InputAction.CallbackContext ctx){
+		movement = Vector3.zero;
+	}
+
+	//!!This might need to be in a different script
+	private void OnPlayerShootPerformed(InputAction.CallbackContext ctx){
+		//Button read
+	}
+
+
+
+
+
+
 }
