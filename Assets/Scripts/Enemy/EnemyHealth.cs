@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
-{
+public class EnemyHealth : MonoBehaviour{
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
+
+    //S.S
+    [SerializeField] ScoreStats playerScore;
 
 
     Animator anim;
@@ -74,7 +76,8 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreValue;
+        ////ScoreManager.score += scoreValue;
+        playerScore.IncreaseScore(scoreValue);
         Destroy (gameObject, 2f);
     }
 }
