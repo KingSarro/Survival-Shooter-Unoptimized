@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn ()
     {
-        if(playerHealth.currentHealth <= 0f)
+        if(playerHealth.playerStats.GetCurrentHealth() <= 0f)
         {
             return;
         }

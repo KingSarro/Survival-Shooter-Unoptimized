@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Transform player = FindObjectOfType<PlayerMovement>().transform;
 
-        if (GetComponent<EnemyHealth>().currentHealth > 0 && player.GetComponent<PlayerHealth>().currentHealth > 0)
+        if (GetComponent<EnemyHealth>().currentHealth > 0 && player.GetComponent<PlayerHealth>().playerStats.GetCurrentHealth() > 0)
         {
             GetComponent<NavMeshAgent>().SetDestination (player.position);
         }
