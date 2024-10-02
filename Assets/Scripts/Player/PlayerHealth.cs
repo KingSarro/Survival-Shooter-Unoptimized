@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour{
 
     //S.S
-    public CharacterStats playerStats;
+    public PlayerStats playerStats;
 
 
 

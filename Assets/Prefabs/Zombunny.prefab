@@ -5263,8 +5263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15099f5ee559584089d5851df572def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.5
-  attackDamage: 10
+  stats: {fileID: 11400000, guid: 8ce1a0bece03da34e88175c2efbc5482, type: 2}
 --- !u!114 &114491779595983746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5277,9 +5276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  stats: {fileID: 11400000, guid: 8ce1a0bece03da34e88175c2efbc5482, type: 2}
   currentHealth: 0
-  sinkSpeed: 2.5
-  scoreValue: 10
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   playerScore: {fileID: 11400000, guid: 417bc423cb6817c449c013330badc30c, type: 2}

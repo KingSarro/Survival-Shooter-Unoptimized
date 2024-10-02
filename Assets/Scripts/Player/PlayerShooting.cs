@@ -45,7 +45,30 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
+        //* I have need trying to Move this fully out of the update, but then the automatic shooting stops
         if(tryingToShoot == true && timer >= timeBetweenBullets && Time.timeScale != 0){
+            Shoot();
+        }
+
+		if(timer >= timeBetweenBullets * effectsDisplayTime){
+            DisableEffects ();
+        }
+    }
+
+
+    public void DisableEffects ()
+    {
+        gunLine.enabled = false;
+        gunLight.enabled = false;
+    }
+
+
+
+
+
+    //S.S
+    private void Shoot(){
+        
             timer = 0f;
 
             gunAudio.Play ();
@@ -74,32 +97,16 @@ public class PlayerShooting : MonoBehaviour
             {
                 gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
             }
-        }
-
-
-		if(timer >= timeBetweenBullets * effectsDisplayTime){
-            DisableEffects ();
-        }
+        
     }
 
 
-    public void DisableEffects ()
-    {
-        gunLine.enabled = false;
-        gunLight.enabled = false;
-    }
-
-
-
-
-
-    //S.S
-    //!!This might need to be in a different script
 	private void OnPlayerShootStarted(InputAction.CallbackContext ctx){
         tryingToShoot = true;    
-	}//OnShootPerformed func close
+	}//OnShootStarted func close
+    
     private void OnPlayerShootCanceled(InputAction.CallbackContext ctx){
         tryingToShoot = false;    
-	}//OnShootPerformed func close
+	}//OnShootCancelled func close
 
 }

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "CharacterStats", menuName = "ScriptableObject/Characters/Stats")]
-public class CharacterStats : ScriptableObject{
+[CreateAssetMenu (fileName = "PlayerStats", menuName = "ScriptableObject/Characters/PlayerStats")]
+public class PlayerStats : ScriptableObject{
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 

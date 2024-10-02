@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour{
-    public int startingHealth = 100;
+    [SerializeField] private EnemyStats stats;
     public int currentHealth;
-    public float sinkSpeed = 2.5f;
-    public int scoreValue = 10;
     public AudioClip deathClip;
 
     //S.S
@@ -26,7 +24,7 @@ public class EnemyHealth : MonoBehaviour{
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
-        currentHealth = startingHealth;
+        currentHealth = stats.GetStartingHealth();
     }
 
 
@@ -34,7 +32,7 @@ public class EnemyHealth : MonoBehaviour{
     {
         if(isSinking)
         {
-            transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+            transform.Translate (-Vector3.up * stats.GetSinkSpeed() * Time.deltaTime);
         }
     }
 
@@ -77,7 +75,7 @@ public class EnemyHealth : MonoBehaviour{
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
         ////ScoreManager.score += scoreValue;
-        playerScore.IncreaseScore(scoreValue);
+        playerScore.IncreaseScore(stats.GetScoreValue());
         Destroy (gameObject, 2f);
     }
 }
