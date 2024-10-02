@@ -8,6 +8,7 @@ public class GameOverManager : MonoBehaviour
 
     Animator anim;
 	float restartTimer;
+    int animID_GameOver = Animator.StringToHash("GameOver");
 
 
     void Awake()
@@ -20,7 +21,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (playerHealth.playerStats.GetCurrentHealth() <= 0)
         {
-            anim.SetTrigger("GameOver");
+            anim.SetTrigger(animID_GameOver);
 
 			restartTimer += Time.deltaTime;
 

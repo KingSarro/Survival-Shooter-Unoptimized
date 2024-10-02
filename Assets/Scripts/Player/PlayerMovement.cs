@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour{
 
-	//Shari was here!
+	//S.S
 	public static PlayerControls playerControls;
+	int animID_IsWalking = Animator.StringToHash("IsWalking");
 
 	//hehehe (;
 
@@ -72,7 +73,7 @@ public class PlayerMovement : MonoBehaviour{
 	{
 		bool walking = (movement != Vector3.zero); //Changed to check if the movement is not zero
 
-		anim.SetBool("IsWalking", walking);
+		anim.SetBool(animID_IsWalking, walking);
 	}
 
 	//S.S

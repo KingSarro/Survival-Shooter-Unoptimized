@@ -14,6 +14,10 @@ public class EnemyAttack : MonoBehaviour
     float timer;
 
 
+
+    //S.S
+    int animID_PlayerDead = Animator.StringToHash("PlayerDead");
+
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag ("Player");
@@ -52,7 +56,7 @@ public class EnemyAttack : MonoBehaviour
 
         if(playerHealth.playerStats.GetCurrentHealth() <= 0)
         {
-            anim.SetTrigger ("PlayerDead");
+            anim.SetTrigger (animID_PlayerDead);
         }
     }
 
