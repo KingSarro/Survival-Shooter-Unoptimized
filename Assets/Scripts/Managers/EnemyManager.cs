@@ -13,11 +13,6 @@ public class EnemyManager : MonoBehaviour
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
 
-    void Update()
-    {
-
-    }
-
 
     void Spawn ()
     {
