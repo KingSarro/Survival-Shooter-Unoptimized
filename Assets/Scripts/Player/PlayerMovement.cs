@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour{
 
 	private void Start(){
 		playerControls.Player.Movement.performed += OnPlayerMovementPerformed;
+		playerControls.Player.Movement.performed -= OnPlayerMovementCancelled;
 	}
 
 	void FixedUpdate(){
