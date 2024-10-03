@@ -2,6 +2,11 @@
 
 public class EnemyHealth : MonoBehaviour{
     [SerializeField] private EnemyStats stats;
+    [SerializeField] private EnemySpawner eSpawner;
+
+
+
+
     public int currentHealth;
     public AudioClip deathClip;
 
@@ -37,6 +42,10 @@ public class EnemyHealth : MonoBehaviour{
         {
             transform.Translate (-Vector3.up * stats.GetSinkSpeed() * Time.deltaTime);
         }
+    }
+
+    public void ResetHealth(){
+        currentHealth = stats.GetStartingHealth();
     }
 
 
@@ -79,6 +88,7 @@ public class EnemyHealth : MonoBehaviour{
         isSinking = true;
         ////ScoreManager.score += scoreValue;
         playerScore.IncreaseScore(stats.GetScoreValue());
-        Destroy (gameObject, 2f);
+        ////Destroy (gameObject, 2f);
+        eSpawner.enemyPool.Release(this); //S.S
     }
 }

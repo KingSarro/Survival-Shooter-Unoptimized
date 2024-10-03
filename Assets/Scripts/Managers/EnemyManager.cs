@@ -7,11 +7,27 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
 
+    public EnemySpawner eSpawner;
 
-    void Start ()
-    {
-        InvokeRepeating ("Spawn", spawnTime, spawnTime);
+
+    void Start (){
+        InvokeRepeating ("SpawnZombies", spawnTime, spawnTime);
     }
+
+
+    //Spawn Zombies... S.S
+    private void SpawnZombies(){
+        eSpawner.enemyPool.Get();
+    }
+
+
+
+
+
+
+
+
+
 
 
     void Spawn ()

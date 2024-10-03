@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour{
     //S.S
     private PlayerHealth playerHealth;
     private Transform playerTransform;
-    private EnemyHealth health;
+    public EnemyHealth health;
     private NavMeshAgent agent;
 
     private void Start(){
@@ -34,4 +34,6 @@ public class EnemyMovement : MonoBehaviour{
             agent.enabled = false;
         }
     }
+
+    
 }
