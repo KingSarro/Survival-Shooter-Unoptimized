@@ -764,9 +764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 1819768538276330, guid: ebed7a3ef4be5458fb88a3c3a689c566,
     type: 3}
-  maxEnemySpawn: 0
+  maxEnemySpawn: 20
   spawnerTransform: {fileID: 694235421}
-  spawnTime: 8
   enemyManager: {fileID: 2135234547}
 --- !u!1 &1072118398
 GameObject:
@@ -889,9 +888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 1161934229116340, guid: 78e1368557eab4d62a5487e98c1b5c5f,
     type: 3}
-  maxEnemySpawn: 0
+  maxEnemySpawn: 20
   spawnerTransform: {fileID: 1084502847}
-  spawnTime: 4
   enemyManager: {fileID: 2135234547}
 --- !u!1 &1114380152
 GameObject:
@@ -1430,9 +1428,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 1719079804300652, guid: 4e3b7f611582d4dc7a9dd318242ed5e3,
     type: 3}
-  maxEnemySpawn: 3
+  maxEnemySpawn: 20
   spawnerTransform: {fileID: 1456155940}
-  spawnTime: 2
   enemyManager: {fileID: 2135234547}
 --- !u!1 &1830089837
 GameObject:
