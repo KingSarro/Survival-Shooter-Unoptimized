@@ -2,7 +2,7 @@
 
 public class EnemyHealth : MonoBehaviour{
     [SerializeField] private EnemyStats stats;
-    [SerializeField] private EnemySpawner eSpawner;
+    private EnemySpawner eSpawner;
 
 
 
@@ -89,6 +89,20 @@ public class EnemyHealth : MonoBehaviour{
         ////ScoreManager.score += scoreValue;
         playerScore.IncreaseScore(stats.GetScoreValue());
         ////Destroy (gameObject, 2f);
+        ///
+        if(gameObject.name == "Zombunny(Clone)"){
+            GameObject.Find("ZomBunnySpawnPoint").GetComponent<EnemySpawner>().enemyPool.Release(this);
+        }
+        else if(gameObject.name == "ZomBear(Clone)"){
+            GameObject.Find("ZomBearSpawnPoint").GetComponent<EnemySpawner>().enemyPool.Release(this);
+        }
+        else if(gameObject.name == "Hellephant(Clone)"){
+            GameObject.Find("HelephantSpawnPoint").GetComponent<EnemySpawner>().enemyPool.Release(this);
+        }
+
+
+
+
         eSpawner.enemyPool.Release(this); //S.S
     }
 }

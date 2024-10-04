@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour{
     [SerializeField] private GameObject enemyToSpawn;
     [SerializeField] private int maxEnemySpawn;
     [SerializeField] private Transform spawnerTransform;
-    [SerializeField] private int spawnTime;
 
     //
     [SerializeField] private EnemyManager enemyManager;
